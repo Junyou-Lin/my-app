@@ -1,0 +1,39 @@
+body {
+  background: #ebebeb;
+}
+
+h2 {
+  text-align: center;
+}
+.clock {
+  width: 80vw;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ec8f6e;
+}
+
+.date {
+  background-color: #d88466;
+  margin: 0px;
+  width: 80vw;
+  text-align: center;
+  padding: 20px 0px;
+  color: white;
+}
+.time {
+  color: white;
+  display: flex;
+  gap: 1vw;
+  padding: 4vw;
+}
+
+.time p {
+  padding: 3vw;
+  font-size: 4vw;
+}
+
+.time-number {
+  background-color: #d88466;
+}
