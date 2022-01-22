@@ -1,39 +1,74 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import moment from "moment-timezone";
+import "../css/clock.css";
+const ClockV4 = () => {
+  const data = [
+    {
+      id: 1,
+      name: "Melbourne",
+      date: moment().tz("Australia/Melbourne").format("dddd MMM Do YYYY"),
+      hour: moment().tz("Australia/Melbourne").format("h"),
+      minute: moment().tz("Australia/Melbourne").format("mm"),
+      second: moment().tz("Australia/Melbourne").format("ss"),
+    },
+    {
+      id: 2,
+      name: "Tokyo",
+      date: moment().tz("asia/tokyo").format("dddd MMM Do YYYY"),
+      hour: moment().tz("asia/tokyo").format("h"),
+      minute: moment().tz("asia/tokyo").format("mm"),
+      second: moment().tz("asia/tokyo").format("ss"),
+    },
+  ];
 
-class ClockV1 extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      time: new Date(),
-    };
-    console.log("constructor");
-  }
+  const [cities, setCities] = useState(data);
 
-  componentDidMount() {
-    console.log("componentDidMount");
-    this.timer = setInterval(() => {
-      console.log("====interval==");
-      this.setState({ time: new Date() });
-
-      // this.setState(() => {
-      //   return { time: new Date() };
-      // });
+  useEffect(() => {
+    setInterval(() => {
+      const currentCityTime = [
+        {
+          id: 1,
+          name: "Melbourne",
+          date: moment().tz("Australia/Melbourne").format("dddd MMM Do YYYY"),
+          hour: moment().tz("Australia/Melbourne").format("h"),
+          minute: moment().tz("Australia/Melbourne").format("mm"),
+          second: moment().tz("Australia/Melbourne").format("ss"),
+        },
+        {
+          id: 2,
+          name: "Tokyo",
+          date: moment().tz("asia/tokyo").format("dddd MMM Do YYYY"),
+          hour: moment().tz("asia/tokyo").format("h"),
+          minute: moment().tz("asia/tokyo").format("mm"),
+          second: moment().tz("asia/tokyo").format("ss"),
+        },
+      ];
+      setCities(currentCityTime);
     }, 1000);
-  }
+  }, []);
 
-  componentWillUnmount() {
-    console.log("componentWillUnmount");
-    clearInterval(this.timer);
-  }
+  return (
+    <>
+      {cities.map((city) => {
+        const { id, name, date, hour, minute, second } = city;
+        return (
+          <div key={id}>
+            <h2>{name}</h2>
+            <div className="clock">
+              <p className="date">{date}</p>
+              <div className="time">
+                <p className="time-number">{hour}</p>
+                <p>:</p>
+                <p className="time-number">{minute}</p>
+                <p>:</p>
+                <p className="time-number">{second}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+};
 
-  componentDidUpdate() {
-    console.log("component did update");
-  }
-
-  render() {
-    console.log("redner");
-    return <div>current time is {this.state.time.toLocaleTimeString()}</div>;
-  }
-}
-
-export default ClockV1;
+export default ClockV4;
