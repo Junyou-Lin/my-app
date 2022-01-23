@@ -5,7 +5,9 @@ const StopWatch = () => {
   const timer = useRef();
   const onStart = () => {
     timer.current = setInterval(() => {
-      setCount((preCount) => preCount + 1);
+      setCount((pre) => {
+        return pre + 1;
+      });
     }, 1);
   };
 
